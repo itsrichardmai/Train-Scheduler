@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        Train Scheduler
+    </title>
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- <div id="row1">Train Scheduler</div> -->
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm">
+                                Train Name
+                            </div>
+                            <div class="col-sm">
+                                Destination
+                            </div>
+                            <div class="col-sm">
+                                Train time
+                            </div>
+                            <div class="col-sm">
+                                Frequency
+                            </div>
+                            <div class="col-sm">
+                                Arrival
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="container">
+                        <div class="row" id="displaycard">
+                            <div class="col-sm">
+                                <p id="train-name-display"></p>
+                            </div>
+                            <div class="col-sm">
+                                <p id="destination-display"></p>
+                            </div>
+                            <div class="col-sm">
+                                <p id="train-time-display"></p>
+                            </div>
+                            <div class="col-sm">
+                                <p id="frequency-display"></p>
+                            </div>
+                            <div class="col-sm">
+                                <p id="minutes-display"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    Train Schedule
+                </div>
+                <div class="card-body">
+                    <form role="form">
+                        <div class="form-group">
+                            <input class="form-control" id="train-name-input" type="text" placeholder="Train Name">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" id="destination-input" type="text" placeholder="Destination">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" id="train-time-input" type="text"
+                                placeholder="Train time (HH:mm military time)">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" id="frequency-input" type="number" placeholder="Frequency">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" id="minutes-input" type="number" placeholder="Minutes Away">
+                        </div>
+                        <button class="btn btn-default" id="add-train" type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- LINK TO FIREBASE GOES HERE -->
+    <script defer src="https://www.gstatic.com/firebasejs/5.9.1/firebase-app.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/5.9.1/firebase-database.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/5.9.1/firebase-firestore.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/5.9.1/firebase-messaging.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/5.9.1/firebase-functions.js"></script>
+    <script defer src="assets/javascript/app.js"></script>
+</body>
+</html>
