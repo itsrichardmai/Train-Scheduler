@@ -34,6 +34,7 @@ As a final challenge, make it so that only users who log into the site with thei
     var trainTime = $("#train-time-input").val().trim();
     var frequency = $("#frequency-input").val();
     
+
     database.ref().push({
       name: name,
       destination: destination,
@@ -57,10 +58,10 @@ As a final challenge, make it so that only users who log into the site with thei
     trainTime1.addClass("col-sm")
     var frequency1 = $("<div>")
     frequency1.addClass("col-sm")
-
+    
     name1.text(sv.name);
     destination1.text(sv.destination);
-    trainTime1.text(sv.trainTime);
+    trainTime1.text(sv.trainTime); 
     frequency1.text(sv.frequency);
 
     $("#displaycard").append(newRow);
@@ -77,8 +78,64 @@ As a final challenge, make it so that only users who log into the site with thei
     console.log(sv.trainTime);
     console.log(sv.frequency);
     renderData(sv)
-  })
+    var firstTimeConverted = moment(snapshot.val().trainTime, "HH:mm").subtract(1, "years");
+    console.log("firstTimeConverted=" + firstTimeConverted)
+    var currentTime = moment();
+    console.log("Current time: " + moment(currentTime).format("hh:mm"));
+    var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+    let tRemainder = diffTime % sv.frequency;
+    console.log(tRemainder);
+    // Minute Until Train
+    var tMinutesTillTrain = sv.frequency - tRemainder;
+    console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
+    // Next Train
+    var nextTrain = moment().add(tMinutesTillTrain, "minutes");
+    nextTrain = moment(nextTrain).format("hh:mm");
+    var newRow = $("<tr></tr>");
+    newRow.append(`<td> ${snapshot.val().trainLine}</td>`);
+    newRow.append(`<td> ${snapshot.val().destination}</td>`);
+    newRow.append(`<td> ${snapshot.val().frequency}</td>`);
+    console.log(snapshot.val().trainLine);
+    newRow.append("<td>" + nextTrain + "</td>");
+    newRow.append("<td>"+tMinutesTillTrain+ "</td>");
+  
+ $('#currentTrains').append(newRow);
+ })
+//   })
 
 
-  var time = moment("20111031", "YYYYMMDD").fromNow(); 
-  console.log("time= " + time)
+//   var time = moment("20111031", "YYYYMMDD").fromNow(); 
+//   console.log("time= " + time)
+
+
+
+
+
+// //   database.ref().on("child_added", function (snapshot) {
+// //     //values for time difference
+// // var firstTimeConverted = moment(snapshot.val().firstTrainTime, "HH:mm").subtract(1, "years");
+// // console.log(firstTimeConverted);
+// // var currentTime = moment();
+// console.log("Current time: " + moment(currentTime).format("hh:mm"));
+// //difference between the times
+// var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+// console.log("DIFFERENCE IN TIME: " + diffTime);
+// // Time apart (remainder)
+// tRemainder = diffTime % frequency;
+// console.log(tRemainder);
+// // Minute Until Train
+//  tMinutesTillTrain = frequency - tRemainder;
+// console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
+// // Next Train
+// nextTrain = moment().add(tMinutesTillTrain, "minutes");
+// nextTrain = moment(nextTrain).format("hh:mm");
+// var newRow = $("<tr></tr>");
+// newRow.append(`<td> ${childSnapshot.val().trainLine}</td>`);
+// newRow.append(`<td> ${childSnapshot.val().destination}</td>`);
+// newRow.append(`<td> ${childSnapshot.val().frequency}</td>`);
+// console.log(childSnapshot.val().trainLine);
+// newRow.append("<td>" + nextTrain + "</td>");
+// newRow.append("<td>"+tMinutesTillTrain+ "</td>");
+
+// $('#currentTrains').append(newRow);
+// })
